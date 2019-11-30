@@ -62,7 +62,6 @@ HTML;
 
     return $output;
 
-}
 
 // Добавляем шорткод в произвольные поля файлов
 function cdwp_custom_field($form_fields, $post)
