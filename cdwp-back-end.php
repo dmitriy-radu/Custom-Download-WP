@@ -1,10 +1,11 @@
 <?php
 // Добавляем шорткод "download"
-add_shortcode( 'download', 'download_shortcode' );
+add_shortcode( 'download', 'cdwp_download_shortcode' );
 
-function download_shortcode( $atts ) {
+if (!function_exists('cdwp_download_shortcode')) {
+function cdwp_download_shortcode( $cdwp_atts ) {
 	// Атрибуты шорткода
-	$atts = shortcode_atts(
+	$cdwp_atts = shortcode_atts(
 		array(
 			'id' => '',
 			'href' => '',
@@ -14,17 +15,18 @@ function download_shortcode( $atts ) {
 			'parent' => '',			
 			'h3' => 'no',
 		),
-		$atts,
+		$cdwp_atts,
 		'download'
 	);
+}
 
-  $dwn_id = $atts['id']; // ID файла
-  $href = $atts['href']; // Ссылка на файл
-  $title = $atts['title']; // Название файла
-  $type = $atts['type']; // Формат файла
-  $size = $atts['size']; // Размер файла
-  $parent = $atts['parent']; // Ссылка на родительскую статью файла
-  $h3 = $atts['h3']; // Обернуть название файла в H3 (yes/no)
+  $dwn_id = $cdwp_atts['id']; // ID файла
+  $href = $cdwp_atts['href']; // Ссылка на файл
+  $title = $cdwp_atts['title']; // Название файла
+  $type = $cdwp_atts['type']; // Формат файла
+  $size = $cdwp_atts['size']; // Размер файла
+  $parent = $cdwp_atts['parent']; // Ссылка на родительскую статью файла
+  $h3 = $cdwp_atts['h3']; // Обернуть название файла в H3 (yes/no)
 
   if($dwn_id) { // Если есть id то выводим все данные на автомате
    	$href = wp_get_attachment_url($dwn_id);
